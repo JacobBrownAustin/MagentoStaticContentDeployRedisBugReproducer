@@ -13,12 +13,11 @@
 
 namespace Magento\StaticContentDeployRedisBugReproducer\Plugin;
 
-use Magento\Deploy\Package\Package;
-use Magento\Deploy\Service\DeployPackage;
+use Magento\Deploy\Model\Deploy\LocaleDeploy;
 use Magento\Framework\App\CacheInterface;
 use Magento\Framework\App\Cache\Frontend\Pool as CacheFrontendPool;
 
-class DeployPackagePlugin
+class LocaleDeployPlugin
 {
 
   /**
@@ -35,10 +34,10 @@ class DeployPackagePlugin
        $this->cacheFrontendPool = $cacheFrontendPool;
    }
 
-    public function beforeDeploy( DeployPackage $deployPackage, Package $package, array $options, $skipLogging = false )
+    public function beforeDeploy( LocaleDeploy $deployPackage, $area, $themePath, $locale )
     {
-        if (0) {
-            echo("beforeDeploy called from pid: " . getmypid() . "\n");
+        if (1) {
+            echo("LocaleDeployPlugin::beforeDeploy called from pid: " . getmypid() . "\n");
         }
         /* Originally, I had meant to be creating the random strings in the while loop, but it fails just as fine if we keep calling the same string, so this is actually better this way. We really don't even need random strings. */
         $randomstring1 = bin2hex(openssl_random_pseudo_bytes(20));
