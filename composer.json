@@ -2,12 +2,7 @@
     "name": "magento/static-content-deploy-redis-bug-reproducer",
     "description": "This is to help reproduce the redis issue that happens when forking in static content deploy",
     "require": {
-        "php": "7.0.2|7.0.4|~7.0.6|~7.1.0",
-        "magento/module-store": "100.2.*",
-        "magento/framework": "101.0.*"
-    },
-    "suggest": {
-        "magento/module-config": "101.0.*"
+        "php": "7.0.2|7.0.4|~7.0.6|~7.1.0"
     },
     "type": "magento2-module",
     "version": "100.2.1",

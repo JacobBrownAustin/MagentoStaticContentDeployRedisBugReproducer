@@ -5,14 +5,14 @@
  */
 
 
-namespace Magento\StaticContentDeployRedisBugReproducer\Plugin
+namespace Magento\StaticContentDeployRedisBugReproducer\Plugin;
 
 use \Magento\Framework\App\Config\ScopeConfigInterface;
 
 class PackagePlugin
 {
 
-    public function beforeFiles( Magento\Deploy\Package\Package $package )
+    public function beforeGetFiles( \Magento\Deploy\Package\Package $package )
     {
         echo ("test\n");
     }
