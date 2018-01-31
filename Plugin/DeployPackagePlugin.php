@@ -31,14 +31,20 @@ class DeployPackagePlugin
 
     public function beforeDeploy( DeployPackage $deployPackage, Package $package, array $options, $skipLogging = false )
     {
-        if (1) {
-            echo("beforeGetFiles called from pid: " . getmypid() . "\n");
+        if (0) {
+            echo("beforeDeploy called from pid: " . getmypid() . "\n");
         }
-		$startTime = time();
+        $randomstring1 = bin2hex(openssl_random_pseudo_bytes(20));
+        $randomstring2 = bin2hex(openssl_random_pseudo_bytes(20));
+        $randomstring3 = bin2hex(openssl_random_pseudo_bytes(20));
+        $startTime = time();
         $frontendinterface = $this->cacheFrontendPool->get("default");
         while ( time() < $startTime + 5) {
-            $data = $frontendinterface->load("global::DiConfig");
-			$test = true;
+            //$data = $frontendinterface->load("global::DiConfig");
+            $data = $frontendinterface->save($randomstring1, $randomstring2);
+            $data = $frontendinterface->load($randomstring1);
+            $data = $frontendinterface->load($randomstring3);
+            $test = true;
         }
     }
 }

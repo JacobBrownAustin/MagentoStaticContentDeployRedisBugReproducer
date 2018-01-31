@@ -1,5 +1,9 @@
 <config>
-  <type name="Magento\Deploy\Package\Package">
-   <plugin name="StaticContentDeployRedisBugReproducer" type="Magento\StaticContentDeployRedisBugReproducer\Plugin\PackagePlugin" sortOrder="1" />
+  <type name="Magento\Deploy\Service\DeployPackage">
+   <plugin name="StaticContentDeployRedisBugReproducer1" type="Magento\StaticContentDeployRedisBugReproducer\Plugin\DeployPackagePlugin" sortOrder="1" />
   </type>
+  <type name="Magento\Deploy\Package\Package">
+   <plugin name="StaticContentDeployRedisBugReproducer2" type="Magento\StaticContentDeployRedisBugReproducer\Plugin\PackagePlugin" sortOrder="1" />
+  </type>
+
 </config>
