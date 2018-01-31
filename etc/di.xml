@@ -5,8 +5,8 @@
     <type name="Magento\Deploy\Model\Deploy\LocaleDeploy">
         <plugin name="StaticContentDeployRedisBugReproducer2" type="Magento\StaticContentDeployRedisBugReproducer\Plugin\LocaleDeployPlugin" sortOrder="1" />
     </type>
-  <type name="Magento\Deploy\Package\Package">
-   <plugin name="StaticContentDeployRedisBugReproducer3" type="Magento\StaticContentDeployRedisBugReproducer\Plugin\PackagePlugin" sortOrder="1" />
+  <type name="Magento\Deploy\Model\DeployManager">
+   <plugin name="StaticContentDeployRedisBugReproducer3" type="Magento\StaticContentDeployRedisBugReproducer\Plugin\DeployManagerPlugin" sortOrder="1" />
   </type>
 
 </config>

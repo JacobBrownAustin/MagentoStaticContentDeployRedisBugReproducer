@@ -45,7 +45,7 @@ class DeployManagerPlugin
         $randomstring3 = bin2hex(openssl_random_pseudo_bytes(20));
         $startTime = time();
         $frontendinterface = $this->cacheFrontendPool->get("default");
-        while ( time() < $startTime + 0) {
+        while ( time() < $startTime + 1) {
             $data = $frontendinterface->save($randomstring1, $randomstring2);
             $data = $frontendinterface->load($randomstring1);
             $data = $frontendinterface->load($randomstring3);
