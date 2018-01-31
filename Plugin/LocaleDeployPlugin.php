@@ -36,7 +36,7 @@ class LocaleDeployPlugin
 
     public function beforeDeploy( LocaleDeploy $deployPackage, $area, $themePath, $locale )
     {
-        if (1) {
+        if (0) {
             echo("LocaleDeployPlugin::beforeDeploy called from pid: " . getmypid() . "\n");
         }
         /* Originally, I had meant to be creating the random strings in the while loop, but it fails just as fine if we keep calling the same string, so this is actually better this way. We really don't even need random strings. */
