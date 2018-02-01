@@ -40,12 +40,12 @@ class LocaleDeployPlugin
             echo("LocaleDeployPlugin::beforeDeploy called from pid: " . getmypid() . "\n");
         }
         /* Originally, I had meant to be creating the random strings in the while loop, but it fails just as fine if we keep calling the same string, so this is actually better this way. We really don't even need random strings. */
-        $randomstring1 = bin2hex(openssl_random_pseudo_bytes(20));
-        $randomstring2 = bin2hex(openssl_random_pseudo_bytes(20));
-        $randomstring3 = bin2hex(openssl_random_pseudo_bytes(20));
         $startTime = time();
         $frontendinterface = $this->cacheFrontendPool->get("default");
         while ( time() < $startTime + 10) {
+            $randomstring1 = bin2hex(openssl_random_pseudo_bytes(20));
+            $randomstring2 = bin2hex(openssl_random_pseudo_bytes(20));
+            $randomstring3 = bin2hex(openssl_random_pseudo_bytes(20));
             $data = $frontendinterface->save($randomstring1, $randomstring2);
             $data = $frontendinterface->load($randomstring1);
             $data = $frontendinterface->load($randomstring3);
