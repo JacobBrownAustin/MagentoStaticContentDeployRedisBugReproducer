@@ -35,9 +35,9 @@ class CacheUserSingletonFactory
         if (0) {
             echo("CacheUserSingletonFactory::create called from pid: " . getmypid() . "\n");
         }
-        if (null === $this->cacheUser) {
-            $this->cacheUser = new CacheUser($this->cacheFrontendPool);
+        if (null === static::$cacheUser) {
+            static::$cacheUser = new CacheUser($this->cacheFrontendPool);
         }
-        return $this->cacheUser;
+        return static::$cacheUser;
     }
 }
