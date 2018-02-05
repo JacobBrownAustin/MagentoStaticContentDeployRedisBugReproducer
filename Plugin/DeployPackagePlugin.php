@@ -15,24 +15,25 @@ namespace Magento\StaticContentDeployRedisBugReproducer\Plugin;
 
 use Magento\Deploy\Package\Package;
 use Magento\Deploy\Service\DeployPackage;
-use Magento\Framework\App\CacheInterface;
-use Magento\Framework\App\Cache\Frontend\Pool as CacheFrontendPool;
+use Magento\StaticContentDeployRedisBugReproducer\CacheUser;
+use Magento\StaticContentDeployRedisBugReproducer\CacheUserSingletonFactory;
 
 class DeployPackagePlugin
 {
 
-  /**
-    * @var CacheFrontendPool
-    */
-   protected $cacheFrontendPool;
+    /**
+     * @var CacheUser
+     */
+    protected $cacheUser;
 
-   /**
-    * @param CacheFrontendPool $cacheFrontendPool
-    */
+
+    /**
+     * @param CacheUserSingletonFactory $cacheUserSingletonFactory
+     */
    public function __construct(
-       CacheFrontendPool $cacheFrontendPool
+       CacheUserSingletonFactory $cacheUserSingletonFactory
    ) {
-       $this->cacheFrontendPool = $cacheFrontendPool;
+       $this->cacheUser = $cacheUserSingletonFactory->create();
    }
 
     public function beforeDeploy( DeployPackage $deployPackage, Package $package, array $options, $skipLogging = false )
@@ -47,10 +48,7 @@ class DeployPackagePlugin
         $startTime = time();
         $frontendinterface = $this->cacheFrontendPool->get("default");
         while ( time() < $startTime + 5) {
-            $data = $frontendinterface->save($randomstring1, $randomstring2);
-            $data = $frontendinterface->load($randomstring1);
-            $data = $frontendinterface->load($randomstring3);
-            $test = true;
+            $this->cacheUser->doCacheStuff();
         }
     }
 }

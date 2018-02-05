@@ -14,32 +14,31 @@
 namespace Magento\StaticContentDeployRedisBugReproducer\Plugin;
 
 use Magento\Deploy\Package\Package;
-use Magento\Framework\App\CacheInterface;
-use Magento\Framework\App\Cache\Frontend\Pool as CacheFrontendPool;
+use Magento\StaticContentDeployRedisBugReproducer\CacheUser;
+use Magento\StaticContentDeployRedisBugReproducer\CacheUserSingletonFactory;
 
 class PackagePlugin
 {
 
   /**
-    * @var CacheFrontendPool
+    * @var CacheUser
     */
-   protected $cacheFrontendPool;
+   protected $cacheUser;
 
    /**
-    * @param CacheFrontendPool $cacheFrontendPool
+    * @param CacheUserSingletonFactory $cacheUserSingletonFactory
     */
    public function __construct(
-       CacheFrontendPool $cacheFrontendPool
+       CacheUserSingletonFactory $cacheUserSingletonFactory
    ) {
-       $this->cacheFrontendPool = $cacheFrontendPool;
+       $this->cacheUser = $cacheUserSingletonFactory->create();
    }
 
     public function beforeGetFiles( Package $package )
     {
         if (0) {
-            echo("beforeGetFiles called from pid: " . getmypid() . "\n");
+            echo("PackagePlugin::beforeGetFiles called from pid: " . getmypid() . "\n");
         }
-        $frontendinterface = $this->cacheFrontendPool->get("default");
-        $data = $frontendinterface->load("global::DiConfig");
+        $this->cacheUser->doCacheStuff();
     }
 }
