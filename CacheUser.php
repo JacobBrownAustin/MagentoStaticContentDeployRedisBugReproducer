@@ -24,24 +24,22 @@ class CacheUser
     public function __construct(
         CacheFrontendPool $cacheFrontendPool
     ) {
-        $this->cacheInterface = $cacheFrontendPool>get("default");
+        $this->cacheInterface = $cacheFrontendPool->get("default");
     }
 
-    public function doCacheStuff( DeployPackage $deployPackage, Package $package, array $options, $skipLogging = false )
+    public function doCacheStuff()
     {
         if (0) {
             echo("doCacheStuff called from pid: " . getmypid() . "\n");
         }
         $startTime = time();
         $frontendinterface = $this->cacheInterface;
-        while ( time() < $startTime + 5) {
-            $randomstring1 = bin2hex(openssl_random_pseudo_bytes(20));
-            $randomstring2 = bin2hex(openssl_random_pseudo_bytes(20));
-            $randomstring3 = bin2hex(openssl_random_pseudo_bytes(20));
-            $data = $frontendinterface->save($randomstring1, $randomstring2);
-            $data = $frontendinterface->load($randomstring1);
-            $data = $frontendinterface->load($randomstring3);
-            $test = true;
-        }
+        $randomstring1 = bin2hex(openssl_random_pseudo_bytes(20));
+        $randomstring2 = bin2hex(openssl_random_pseudo_bytes(20));
+        $randomstring3 = bin2hex(openssl_random_pseudo_bytes(20));
+        $data = $frontendinterface->save($randomstring1, $randomstring2);
+        $data = $frontendinterface->load($randomstring1);
+        $data = $frontendinterface->load($randomstring3);
+        $test = true;
     }
 }

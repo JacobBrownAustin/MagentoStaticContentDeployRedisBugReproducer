@@ -46,7 +46,6 @@ class DeployPackagePlugin
         $randomstring2 = bin2hex(openssl_random_pseudo_bytes(20));
         $randomstring3 = bin2hex(openssl_random_pseudo_bytes(20));
         $startTime = time();
-        $frontendinterface = $this->cacheFrontendPool->get("default");
         while ( time() < $startTime + 5) {
             $this->cacheUser->doCacheStuff();
         }
